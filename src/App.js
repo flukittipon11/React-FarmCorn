@@ -21,6 +21,7 @@ import Section_Weather from "./components/SectionRecomend/Section_Weather";
 import AllCollectionData from "./components/Section/AllCollectionData";
 
 function App() {
+  
   return (
     <>
       <AuthProvider>

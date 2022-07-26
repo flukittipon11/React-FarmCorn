@@ -8,7 +8,7 @@ export const RecomContainer = styled.div`
 
   @media screen and (max-width: 768px) {
     padding:2rem 3rem;
-    height: 740px;
+    height: 700px;
   }
 `;
 export const RecomWrapper = styled.div`
@@ -73,6 +73,7 @@ export const Header = styled.h1`
   color: #233e8b;
   @media screen and (max-width: 768px) {
     font-size: 36px;
+    padding-top: 2.5rem;
   }
 `;
 export const Title = styled.p`

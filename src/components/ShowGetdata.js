@@ -7,6 +7,7 @@ import moment from "moment";
 import Navbar from "./Navigate/Navbar";
 import Sidebar from "./Navigate/Sidebar";
 import ImagePlots from "../image/PlotImage.jpeg";
+import iconTooltip from "../image/tooltip.png";
 import { useLocation } from "react-router-dom";
 import {
   BoxBtnexport,
@@ -17,10 +18,12 @@ import {
   BoxPlotName,
   BoxSize,
   BoxTable,
+  BoxTooltip,
   ButtonExport,
   Container,
   ContentPlotname,
   HuckContainer,
+  IconTooltip,
   ImagePlot,
   MainScreen,
   SizeContainer,
@@ -31,12 +34,15 @@ import {
   TextHeader,
   TextHeaderHusk,
   TextHeaderSize,
+  // HeaderShow,
   TextNamePlot,
   TextTitleHusk,
   TextTitlePlot,
   TextTitleSize,
 } from "./elements/ShowGetDataElement";
 import { SizeBackground } from "./elements/CalculateElement";
+import Tootip from "./Tooltip/Tootip";
+import { HeaderShow } from "./elements/ShowDataElements";
 
 const ExcelFile = ReactExport.ExcelFile;
 const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
@@ -51,6 +57,7 @@ export default function ShowGetdata() {
   const [Farm_place, setFarm_place] = useState("");
   const [Farm_width, setFarm_width] = useState("");
   const [Corn_Varieties, setCorn_Varieties] = useState("");
+  const [dataSum, setDatasum] = useState(0);
 
   const dbRefPlot = firebase.firestore().collection("Corn-growth");
   const { userKey } = location.state;
@@ -87,8 +94,72 @@ export default function ShowGetdata() {
     });
   }
   let No_Sheath = DataPlot.sort((a, b) => {
-    return a.SheathCorn - b.SheathCorn;
+    return a.TotalWeigt_CornMeat - b.TotalWeigt_CornMeat;
   });
+  const returnTableData = () => {
+    if (No_Sheath.length == 0)
+      return (
+        <tr
+          style={{
+            textAlign: "center",
+            alignItems: "center",
+            justifyContent: "center",
+            width: "100%",
+            height: "30vh",
+          }}
+        >
+          <td colSpan="17">
+            <h1 style={{ fontSize: "24px", fontWeight: 400, color: "gray" }}>
+              ไม่มีข้อมูล
+            </h1>
+          </td>
+        </tr>
+      );
+    else {
+      console.log(No_Sheath);
+
+      return No_Sheath.map((item, i) => {
+        let date = item.Date;
+        let resultDate = moment(date).format("DD/MM/YYYY");
+        if (resultDate == "Invalid date") {
+          resultDate = "ไม่มีวันที่";
+        }
+
+        // console.log(sum);
+
+        // const reducer = (accumlator,curr) =>accumlator+curr;
+        // let sum = item.TotalWeigt_CornMeat
+        return (
+          <TableTR key={i}>
+            <TableTD>{resultDate}</TableTD>
+            <TableTD>{item.SheathCorn}</TableTD>
+            <TableTD>{item.Length_SheathBefore}</TableTD>
+            <TableTD>{item.Width_SheathBefore}</TableTD>
+            <TableTD>{item.Weight_BeforeCasing}</TableTD>
+            <TableTD>{item.Weight_BeforeBreakStem}</TableTD>
+            <TableTD>{item.Husk_Cover}</TableTD>
+            <TableTD>{item.Weight_AfterCasing}</TableTD>
+            <TableTD>{item.Diameter_Size}</TableTD>
+            <TableTD>{item.Total_LengthCorn}</TableTD>
+            <TableTD>{item.Total_NotAttached}</TableTD>
+            <TableTD>{item.Total_RowSeed}</TableTD>
+            <TableTD>{item.Total_Seed}</TableTD>
+            <TableTD>{item.Size_CornCob}</TableTD>
+            <TableTD>{item.Size_CornSeed}</TableTD>
+            <TableTD>{item.TotalWeigt_CornCob}</TableTD>
+            <TableTD>{item.TotalWeigt_CornMeat}</TableTD>
+          </TableTR>
+        );
+      });
+    }
+  };
+
+  let sumArr = [];
+
+  for (let i = 0; i < No_Sheath.length; i++) {
+    sumArr.push(No_Sheath[i].TotalWeigt_CornMeat);
+  }
+  let totalMeat = sumArr.reduce((a, b) => a + b, 0);
 
   return (
     <>
@@ -96,9 +167,10 @@ export default function ShowGetdata() {
       <Navbar toggle={toggle} />
       <Container>
         <MainScreen>
-          <BoxHeaderText>
-            <TextHeader>ตารางข้อมูลการบันทึกข้อมูล</TextHeader>
-          </BoxHeaderText>
+          <HeaderShow>
+            <h2>ตารางการบันทึกข้อมูล</h2>
+            <p>ข้อมูลการบันทึกการเจริญเติบโตของข้าวโพด</p>
+          </HeaderShow>
           <BoxContent>
             <BoxPlotName>
               <BoxImagePlot>
@@ -111,34 +183,11 @@ export default function ShowGetdata() {
                 <TextTitlePlot>พันธุ์ : {Corn_Varieties}</TextTitlePlot>
               </ContentPlotname>
             </BoxPlotName>
-            <BoxSize>
-              <SizeContainer>
-                <TextHeaderSize>ขนาดฝักหลังปลอก ( เซนติเมตร )</TextHeaderSize>
-                <TextTitleSize>
-                  L1 = ความยาวฝักวัดจากโคนฝักถึงปลายสุดของฝักที่ปอกเปลือกแล้ว
-                </TextTitleSize>
-                <TextTitleSize>
-                  L2 = ความยาวของส่วนที่ไม่ติดปลายฝัก
-                </TextTitleSize>
-                <TextTitleSize>D = ขนาดเส้นผ่านศูนย์กลางฝัก</TextTitleSize>
-              </SizeContainer>
-            </BoxSize>
-            <BoxHusk>
-              <HuckContainer>
-                <TextHeaderHusk>Husk Cover Choice</TextHeaderHusk>
-                <TextTitleHusk>1 = ปลายฝักโผล่พ้นเปลือกหุ้มฝัก</TextTitleHusk>
-                <TextTitleHusk>2 = เปลือกหุ้มฝักปิดเสมอปลายฝัก</TextTitleHusk>
-                <TextTitleHusk>
-                  3 = เปลือกหุ้มฝักปิดเกินปลายฝัก 1 ซม.
-                </TextTitleHusk>
-                <TextTitleHusk>
-                  4 = เปลือกหุ้มฝักปิดเกินปลายฝัก 2 ซม.
-                </TextTitleHusk>
-                <TextTitleHusk>
-                  5 = เปลือกหุ้มฝักปิดเกินปลายฝัก 1 ซม. ขึ้นไป
-                </TextTitleHusk>
-              </HuckContainer>
-            </BoxHusk>
+            <BoxTooltip>
+              <Tootip direction="left" delay="200">
+                <IconTooltip src={iconTooltip} />
+              </Tootip>
+            </BoxTooltip>
           </BoxContent>
           <BoxTable>
             <Table>
@@ -168,36 +217,12 @@ export default function ShowGetdata() {
                 <TableTH>ซัง</TableTH>
                 <TableTH>เมล็ด</TableTH>
               </TableTR>
-              {No_Sheath.map((item, i) => {
-                let date = item.Date;
-                let resultDate = moment(date).format("DD/MM/YYYY");
-                if (resultDate == "Invalid date") {
-                  resultDate = "ไม่มีวันที่";
-                }
-                return (
-                  <TableTR key={i}>
-                    <TableTD>{resultDate}</TableTD>
-                    <TableTD>{item.SheathCorn}</TableTD>
-                    <TableTD>{item.Length_SheathBefore}</TableTD>
-                    <TableTD>{item.Width_SheathBefore}</TableTD>
-                    <TableTD>{item.Weight_BeforeCasing}</TableTD>
-                    <TableTD>{item.Weight_BeforeBreakStem}</TableTD>
-                    <TableTD>{item.Husk_Cover}</TableTD>
-                    <TableTD>{item.Weight_AfterCasing}</TableTD>
-                    <TableTD>{item.Diameter_Size}</TableTD>
-                    <TableTD>{item.Total_LengthCorn}</TableTD>
-                    <TableTD>{item.Total_NotAttached}</TableTD>
-                    <TableTD>{item.Total_RowSeed}</TableTD>
-                    <TableTD>{item.Total_Seed}</TableTD>
-                    <TableTD>{item.Size_CornCob}</TableTD>
-                    <TableTD>{item.Size_CornSeed}</TableTD>
-                    <TableTD>{item.TotalWeigt_CornCob}</TableTD>
-                    <TableTD>{item.TotalWeigt_CornMeat}</TableTD>
-                  </TableTR>
-                );
-              })}
+              {returnTableData()}
             </Table>
           </BoxTable>
+          {/* <div>
+            <h2>น้ำหนักรวมทั้งหมด = {totalMeat}</h2>
+          </div> */}
           <BoxBtnexport>
             <ExcelFile
               filename={"Sheath Corn " + "DataExport"}

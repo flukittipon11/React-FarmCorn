@@ -2,14 +2,15 @@ import styled from "styled-components";
 import { NavLink as Link } from "react-router-dom";
 import { Link as LinkS } from "react-scroll";
 import { FaBars } from "react-icons/fa";
+import { RiArrowDropDownLine } from "react-icons/ri";
 
 export const Nav = styled.nav`
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   background-color: #fff;
   height: 80px;
   display: flex;
   justify-content: space-between;
   padding: 1rem 4rem 1em 2em;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   z-index: 10;
   position: sticky;
   text-decoration: none;
@@ -63,6 +64,10 @@ export const Bars = styled(FaBars)`
     font-size: 1.8rem;
     cursor: pointer;
   }
+`;
+export const IconDropdown = styled(RiArrowDropDownLine)`
+  width: 30px;
+  height: 30px;
 `;
 
 export const NavMenu = styled.div`

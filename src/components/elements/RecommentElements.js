@@ -3,6 +3,7 @@ import { Link } from "react-scroll";
 import { Link as LinkR } from "react-router-dom";
 import { MdArrowForward, MdKeyboardArrowRight } from "react-icons/md";
 
+
 export const RecomContainer = styled.div`
   background-color: #b2d3be;
 

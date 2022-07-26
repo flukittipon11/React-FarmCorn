@@ -18,15 +18,102 @@ import {
   RecContentThreeBox,
   RecContentBox,
   RecContentP,
-  RecContentBoxThree
+  RecContentBoxThree,
 } from "./elements/RecomendElement";
+import firebase from "../config";
 
 export default function Recomend() {
   const [isOpen, setIsOpen] = useState(false);
+  const [plotArr, setplotArr] = useState([]);
+  const [dataArr, setdataArr] = useState([]);
+  const [subData, setsubData] = useState([]);
+  const [token, settoken] = useState([]);
+  const [valueSum, setvalueSum] = useState([]);
+  const firebaseRef = firebase.firestore().collection("Corn-growth");
+
+  console.log("=" + valueSum[0]);
+  useEffect(() => {
+    getAllCollection();
+    // getAlldata();
+  }, []);
+
+  function getAllCollection() {
+    const AllData = [];
+    const KeyData = [];
+    const values = [];
+    setdataArr([]);
+    firebaseRef.onSnapshot((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        let arrsub = [];
+        console.log(doc.id);
+        firebaseRef
+          .doc(doc.id)
+          .collection("Sheath-Corn")
+          .get()
+          .then((res) => {
+            res.docs.forEach((data) => {
+              arrsub.push({
+                key: data.id,
+                ...data.data(),
+              });
+              let values = arrsub.reduce((a, b) => a + b);
+              // console.log(values);
+            });
+            subData.push(arrsub);
+          });
+        values.push(subData);
+        AllData.push({
+          ...doc.data(),
+          key: doc.id,
+        });
+        KeyData.push({
+          key: doc.id,
+        });
+      });
+      setvalueSum(values);
+      settoken(KeyData);
+      setplotArr(AllData);
+    });
+  }
+
+  // function getAlldata() {
+  //   token.map((res) => {
+  //     const snapshot = firebaseRef.doc(res.key).collection("Sheath-Corn").get();
+  //     return snapshot.docs.map((doc) => doc.data());
+  //   });
+  // }
+  // async function fetchCollection() {
+  //   await Promise.all(
+  //     token.map((res) => {
+  //       const boxArr = [];
+  //       firebaseRef
+  //         .doc(res.key)
+  //         .collection("Sheath-Corn")
+  //         .onSnapshot((querySnapshot) => {
+  //           querySnapshot.forEach((doc) => {
+  //             boxArr.push({
+  //               ...doc.data(),
+  //               key: doc.id,
+  //             });
+  //           });
+  //           // console.log(dataArr.length);
+  //           setdataArr(boxArr);
+  //         });
+  //     })
+  //   );
+  // }
+  function renderData() {
+    let totalRowSeed = [];
+    for (let i = 0; i < valueSum.length; i++) {
+      const element = valueSum[i];
+      
+    }
+    
+  }
+
   const toggle = () => {
     setIsOpen(!isOpen);
   };
-
   return (
     <>
       <Sidebar isOpen={isOpen} toggle={toggle} />

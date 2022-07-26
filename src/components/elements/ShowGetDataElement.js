@@ -49,7 +49,7 @@ export const BoxContent = styled.div`
 `;
 export const BoxPlotName = styled.div`
   display: flex;
-  width: 440px;
+  width: 480px;
   height: 170px;
   margin-right: 2rem;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
@@ -70,6 +70,17 @@ export const ImagePlot = styled.img`
   width: 100%;
   height: 100%;
 `;
+export const BoxTooltip = styled.div`
+cursor: pointer;
+  border-radius: 50px;
+  position: absolute;
+  right: 3rem;
+  background-color: #ffff;
+`;
+export const IconTooltip = styled.img`
+  width: 50px;
+  height: 50px;
+`;
 export const ContentPlotname = styled.div`
   display: flex;
   flex-direction: column;
@@ -89,7 +100,7 @@ export const BoxSize = styled.div`
   width: 350px;
   height: 180px;
   border-radius: 20px;
-  margin-right: 1rem;
+  opacity: 0.95;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   background-color: #5f7a61;
   @media screen and (max-width: 768px) {
@@ -134,6 +145,7 @@ export const BoxHusk = styled.div`
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   border-radius: 20px;
   background-color: #444941;
+  margin-bottom: 0.5rem;
   @media screen and (max-width: 768px) {
     width: 300px;
     height: 170px;
@@ -257,4 +269,22 @@ export const ButtonExport = styled.button`
     padding: 1em;
     font-size: 14px;
   }
+`;
+// tooltip left
+export const TooltipLeft = styled.div`
+  flex-direction: column;
+  position: absolute;
+  right: 4rem;
+  top: -13rem;
+  /* left: auto;
+  right: calc(100% + var(--tooltip-margin));
+  top: 50%;
+  transform: translateX(0) translateY(-50%);
+  ::before {
+    left: auto;
+    right: calc(var(--tooltip-arrow-size) * -2);
+    top: 50%;
+    transform: translateX(0) translateY(-50%);
+    border-left-color: var(--tooltip-background-color); */
+  /* } */
 `;

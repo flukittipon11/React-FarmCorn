@@ -1,288 +1,289 @@
 import styled from "styled-components";
 
-export const SizeBackground = styled.html`
+export const ContainerAnalyze = styled.div`
+  /* background-color: #fff; */
   width: 100%;
   height: 100%;
-  background-attachment: fixed;
-  @media screen and (max-width: 768px) {
-    height: 1300px;
-  }
+  padding-bottom: 2rem;
+  /* padding: 2rem; */
 `;
-
-export const ContainerCalculate = styled.div`
-  background-color: #dfeeea;
+export const BackgroundHeader = styled.div`
+  position: absolute;
   width: 100%;
-  height: 100%;
-  padding: 4.5rem 2rem;
-  @media screen and (max-width: 768px) {
-    height: 1600px;
-    padding: 1rem 4rem;
-  }
+  height: 35%;
+  background-color: #7eb5b2;
+  border-bottom-left-radius: 135px;
+  padding: 2rem;
+  z-index: -1;
 `;
-export const MainCalculate = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  padding: 0 20px;
-  @media screen and (max-width: 768px) {
-    padding: 1.5rem;
-  }
-`;
-export const HeaderCalculate = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 2.5rem;
-  justify-content: flex-start;
+export const HeaderAnalyze = styled.div`
+  padding: 2.5rem 5rem;
   h2 {
-    font-size: 42px;
     font-weight: 400;
-    color: #1eae98;
+    font-size: 35px;
+    color: #ddffbf;
   }
   p {
-    font-size: 20px;
-    color: #9d9d9d;
-  }
-  @media screen and (max-width: 768px) {
-    padding: 0 1rem;
-    margin-bottom: 1.5rem;
-  }
-`;
-export const BoxAnalyzeTop = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  margin-bottom: 1rem;
-  flex-direction: row;
-  @media screen and (max-width: 768px) {
-    flex-direction: column;
-    margin-bottom: 10px;
-  }
-`;
-export const BoxTopAnalyzeLeft = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 64%;
-  padding: 10px;
-  @media screen and (max-width: 768px) {
-    width: 100%;
-  }
-  /* background-color: #fff; */
-`;
-export const BoxTopAnalyzeRight = styled.div`
-  display: flex;
-  justify-content: center;
-  width: 35%;
-  height: 24rem;
-  @media screen and (max-width: 768px) {
-    padding: 10px;
-    width: 100%;
-    height: 21rem;
-  }
-`;
-export const PieBoxAnalyze = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-  background-color: #fff;
-  border-radius: 20px;
-  box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
-    rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
-`;
-export const BoxTextChart = styled.text`
-  font-size: 20px;
-  font-weight: 400;
-  color: #22577a;
-`;
-export const BoxDataChart = styled.div`
-  width: 304px;
-  height: 204px;
-`;
-export const BoxBottomDataChart = styled.div`
-  width: 30em;
-  height: 30em;
-`;
-export const BoxLeftContentOne = styled.div`
-  padding-left: 0 2em;
-  display: flex;
-  background-color: #52734d;
-  box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
-    rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
-  margin-bottom: 0.5em;
-  width: 100%;
-  height: 7em;
-  @media screen and (max-width: 768px) {
-    padding: 10px 20px;
-  }
-`;
-export const ContentOneHeader = styled.div`
-  background-color: #fff;
-  width: 20%;
-  display: flex;
-  border-radius: 20px;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-`;
-export const OneHeaderText = styled.p`
-  font-size: 20px;
-  font-weight: 400;
-  @media screen and (max-width: 768px) {
-    font-size: 20px;
     font-weight: 300;
+    font-size: 20px;
+    color: #fff;
   }
 `;
-export const OneTitleText = styled.p`
-  @media screen and (max-width: 768px) {
-    margin-top: -15px;
-    font-size: 40px;
-    font-weight: 400;
-  }
+export const BoxContent = styled.div`
+  width: 100%;
+  padding: 0 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
-export const BoxLeftContentTwo = styled.div`
+export const ContentTop = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
   padding: 0 2rem;
+  margin-bottom: 15px;
+  @media screen and (max-width: 768px) {
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+`;
+export const BoxFilterData = styled.div`
+  width: 35%;
+  margin-right: 10px;
+  background-color: #fff;
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
+    rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+  height: 30vh;
+  border-radius: 20px;
+  padding: 1rem 2rem;
+  h2 {
+    font-weight: 400;
+  }
+  p {
+    color: gray;
+    margin-bottom: 15px;
+  }
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    height: 20vh;
+    margin-bottom: 20px;
+  }
+`;
+export const BoxPlotTop = styled.div`
+  width: 25%;
+  height: 30vh;
+  margin-right: 10px;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  padding: 1rem;
+  @media screen and (max-width: 768px) {
+    width: 45%;
+    height: 20vh;
+  }
+`;
+export const PlotHeaderContent = styled.div`
   display: flex;
   align-items: center;
-  background-color: #91c788;
-  box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
-    rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
-  margin-bottom: 0.5em;
-  width: 100%;
-  height: 7em;
-  border-radius: 10px;
-`;
-export const BoxLeftContentThree = styled.div`
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row;
-  width: 100%;
-`;
-export const BoxContentRowOne = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  flex-direction: column;
-  width: 50%;
-  height: 9rem;
-  padding: 20px;
-  background-color: #ddffbc;
-  border-radius: 10px;
-  box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
-    rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
-  @media screen and (max-width: 768px) {
-    padding: 20px;
-  }
-`;
-export const RowHeaderTextOne = styled.h2`
-  font-size: 22px;
-  font-weight: 400;
-  @media screen and (max-width: 768px) {
-    font-size: 20px;
-    font-weight: 400;
-  }
-`;
-export const RowTitleTextOne = styled.p`
-  font-size: 22px;
-  font-weight: 400;
-  @media screen and (max-width: 768px) {
-    font-size: 16px;
-    font-weight: 300;
-  }
-`;
-export const BoxRowDataText = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-`;
-export const RowDataTextOne = styled.h2`
-  font-size: 35px;
-  font-weight: 400;
-  @media screen and (max-width: 768px) {
-    font-size: 45px;
-    font-weight: 400;
-  }
-`;
-
-export const BoxContentRowTwo = styled.div`
-  display: flex;
-  flex-direction: column;
   justify-content: center;
-  text-align: center;
-  width: 23%;
-  height: 9rem;
-  padding: 10px;
-  background-color: #ddffbc;
-  border-radius: 10px;
-  box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
-    rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
-`;
-export const RowHeaderTextTwo = styled.h2`
-  font-size: 22px;
-  font-weight: 400;
-  @media screen and (max-width: 768px) {
+  flex-direction: row;
+  margin-bottom: 10px;
+  h2 {
     font-size: 18px;
     font-weight: 400;
   }
+  text-align: center;
 `;
-export const RowDataTextTwo = styled.h2`
-  font-size: 35px;
-  font-weight: 400;
+
+export const ImagePlot = styled.img`
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+`;
+export const BoxVarietiesTop = styled.div`
+  width: 25%;
+  height: 30vh;
+  border-radius: 20px;
+  padding: 1rem;
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   @media screen and (max-width: 768px) {
-    font-size: 45px;
-    font-weight: 400;
+    width: 45%;
+    height: 20vh;
   }
 `;
-export const BoxContentRowThree = styled.div`
+export const ContentMidle = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 0 2rem;
+  margin-bottom: 15px;
+`;
+export const BoxAnalyzeMidle = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 86%;
+  border-radius: 20px;
+  height: 42vh;
+  background-color: #fff;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  @media screen and (max-width: 768px) {
+    flex-direction: row;
+    width: 100%;
+    height: 35vh;
+  }
+`;
+export const ContentMidleLeft = styled.div`
+  width: 40%;
+  height: 100%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
+  /* display: flex; */
+`;
+export const CircularProgress = styled.div`
+  width: 150px;
+  height: 150px;
+`;
+export const BoxAmountPlot = styled.div`
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  text-align: center;
-  width: 23%;
-  height: 9rem;
-  padding: 10px;
-  background-color: #ddffbc;
-  border-radius: 10px;
-  box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
-    rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
-`;
-export const BoxAnalyzeBottom = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 0 0.5rem;
-  width: 100%;
-  flex-direction: row;
-  @media screen and (max-width: 768px) {
-    flex-direction: column;
+  align-items: center;
+  h2 {
+    font-weight: 300;
+  }
+  p {
+    font-size: 18px;
+    color: #f0a500;
   }
 `;
-export const BoxBottomAnalyzeLeft = styled.div`
-  width: 52%;
-  height: 19rem;
-  background-color: #fff;
-  border-radius: 20px;
-  box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
-    rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+export const ContentMidleRight = styled.div`
+  padding: 1rem;
+  /* background-color: red; */
+  width: 50%;
+  height: 100%;
   @media screen and (max-width: 768px) {
     width: 100%;
-    margin-bottom: 20px;
-    height: 19rem;
+    align-items: center;
+    justify-content: center;
   }
 `;
-export const BoxBottomAnalyzeRight = styled.div`
+export const BoxBarsChart = styled.div`
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 47%;
-  height: 19rem;
-  background-color: #fff;
+`;
+export const HeaderBoxMidle = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  margin-bottom: 10px;
+  h2 {
+    font-size: 18px;
+    font-weight: 400;
+  }
+  text-align: center;
+`;
+export const ContentBottom = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  padding: 0 2rem;
+  margin-bottom: 15px;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+  }
+`;
+export const BoxbtmLeft = styled.div`
+  width: 42%;
+  height: 52vh;
   border-radius: 20px;
-  box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
-    rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+  background-color: #fff;
+  margin-right: 15px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  padding: 1rem;
   @media screen and (max-width: 768px) {
     width: 100%;
-    height: 19rem;
+    height: 40vh;
+    margin-bottom: 20px;
+    margin-right: 0;
+  }
+`;
+
+export const BoxbtmRight = styled.div`
+  width: 42%;
+  height: 52vh;
+  border-radius: 20px;
+  background-color: #fff;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  padding: 1rem;
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    height: 40vh;
+    margin-bottom: 20px;
+  }
+`;
+export const BoxDoungnet = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;
+export const BoxBar = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+export const TotalCorn = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  h2 {
+    color: #65c18c;
+    font-weight: 400;
+    font-size: 85px;
+  }
+  @media screen and (max-width: 768px) {
+    h2 {
+      font-size: 58px;
+      font-weight: 400;
+    }
+  }
+`;
+export const SubmitVarieties = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  h2 {
+    color: gray;
+    font-weight: 400;
+    font-size: 30px;
+  }
+  @media screen and (max-width: 768px) {
+    h2 {
+      font-size: 40px;
+      font-weight: 400;
+    }
   }
 `;

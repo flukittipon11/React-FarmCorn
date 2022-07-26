@@ -69,13 +69,13 @@ export default function ShowDataScreen() {
       <Sidebar isOpen={isOpen} toggle={toggle} />
       <Navbar toggle={toggle} />
       <CornTainerShow>
+        <HeaderShow>
+          <h2>แสดงข้อมูลการบันทึก</h2>
+          <p>
+            แสดงข้อมูลและการวิเคราะห์ผลผลิตจากการบันทึกข้อมูลผ่านแอปพลิเคชั่น
+          </p>
+        </HeaderShow>
         <MainShowScreen>
-          <HeaderShow>
-            <h2>แสดงข้อมูลการบันทึก</h2>
-            <p>
-              แสดงข้อมูลและการวิเคราะห์ผลผลิตจากการบันทึกข้อมูลผ่านแอปพลิเคชั่น
-            </p>
-          </HeaderShow>
           <BoxDataShow>
             <ShowDataPlot>
               <HeaderTextShow>
@@ -111,27 +111,6 @@ export default function ShowDataScreen() {
                 ))}
               </BoxCard>
             </ShowDataPlot>
-            <ShowDataAnalyze>
-              <BoxImageAnalyze>
-                <ImageAnalyze src={PicAnalyze} />
-              </BoxImageAnalyze>
-              <BoxTextAnalyze>
-                <TextAnalyzeHeader>ผลการวิเคราะห์ข้อมูล</TextAnalyzeHeader>
-                <TextAnalyzeTitle>
-                  ผลการวิเคราะห์คำนวนผลผลิตจากการบันทึกข้อมูลการเจริญเติบโตของข้าวโพด
-                  ออกมาในรูปแบบของ Data Visualization
-                </TextAnalyzeTitle>
-              </BoxTextAnalyze>
-              <BtnBox>
-                <Button
-                  to="/showScreen/calculate"
-                  onMouseEnter={onHover}
-                  onMouseLeave={onHover}
-                >
-                  แสดงผลการวิเคราะห์ {hover ? <ArrowForward /> : <ArrowRight />}
-                </Button>
-              </BtnBox>
-            </ShowDataAnalyze>
           </BoxDataShow>
         </MainShowScreen>
       </CornTainerShow>

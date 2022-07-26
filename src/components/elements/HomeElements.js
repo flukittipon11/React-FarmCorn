@@ -43,11 +43,12 @@ export const HeaderMessage = styled.div`
 `;
 
 export const BoxMessageShow = styled.div`
+height: 50vh;
   border-radius: 10px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
   width: 65%;
-  height: 50vh;
+  
   padding: 2rem;
   background-color: #fff;
 
@@ -61,6 +62,9 @@ export const BoxTextPost = styled.div`
   display: flex;
   flex-direction: column;
   width: 80%;
+  @media screen and (max-width: 390px){
+    width: 100%;
+  }
 `;
 
 export const BoxPostShow = styled.div`
@@ -68,7 +72,12 @@ export const BoxPostShow = styled.div`
   width: 100%;
   padding: 0.5em 1em 0.5em 1em;
   border-bottom: solid 2px gray;
+  @media screen and (max-width: 390px){
+    padding: 0%;
+  }
+  
 `;
+ 
 
 export const PostHeader = styled.h3`
   font-size: 20px;
@@ -79,6 +88,9 @@ export const PostTitle = styled.p`
   font-size: 16px;
   font-weight: 300;
   color: #57837b;
+  @media screen and (max-width: 390px){
+    font-size: 12px;
+  }
 `;
 export const BoxDelete = styled.div`
   display: flex;
@@ -87,6 +99,9 @@ export const BoxDelete = styled.div`
 
   justify-content: flex-end;
   @media screen and (max-width: 768px) {
+  }
+  @media screen and (max-width: 390px){
+    padding-left: 0%;
   }
 `;
 export const ButtonDelete = styled.button`
@@ -109,6 +124,11 @@ export const ButtonDelete = styled.button`
     width: 5.5em;
     font-size: 14px;
   }
+  @media screen and (max-width: 390px){
+    width: 100%;
+    height: 50%;
+    font-size: 10px;
+  }
 `;
 export const BoxbtnPost = styled.div`
   display: flex;
@@ -128,6 +148,13 @@ export const ButtonPost = styled.button`
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   color: #fff;
+  cursor: pointer;
+
+  :hover{
+    background-color: #fff;
+    color: #22577a;
+
+  }
 
   :active {
     background-color: #fff;

@@ -4,12 +4,12 @@ import { Link as LinkR } from "react-router-dom";
 import { MdArrowForward, MdKeyboardArrowRight } from "react-icons/md";
 
 export const CornTainerShow = styled.div`
-  background-color: #dfeeea;
+  /* background-color: #dfeeea; */
 
-  padding: 5.8rem 2rem;
+  padding: 3rem 2rem;
   @media screen and (max-width: 768px) {
-    height: 1200px;
-    padding: 0 2.5rem;
+    height: 700px;
+    padding: 3rem 2.5rem;
   }
 `;
 
@@ -70,8 +70,7 @@ export const HeaderTextShow = styled.div`
 
 export const BoxDataShow = styled.div`
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  justify-content: center;
   height: 100%;
   width: 100%;
   @media screen and (max-width: 768px) {
@@ -85,12 +84,13 @@ export const ShowDataPlot = styled.div`
   display: flex;
   flex-direction: column;
   padding: 2rem;
-  width: 60%;
+  width: 80%;
+  height: 55vh;
   border-radius: 20px;
   background-color: #66806a;
   box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
   @media screen and (max-width: 768px) {
-    height: 60%;
+    height: 100%;
     width: 100%;
     padding: 1.5rem 0;
   }

@@ -20,6 +20,8 @@ import {
 import firebase from "../../config";
 import { AuthContext } from "../Auth";
 import PopupPost from "../PopupPost";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const MainPostSreen = () => {
   const { currentUser } = useContext(AuthContext);
@@ -27,6 +29,7 @@ const MainPostSreen = () => {
   const [buttonEdit, setEditPopup] = useState(false);
   const [loading, setLoading] = useState(false);
   const [posts, setPosts] = useState([]);
+  const [statusPost, setstatusPost] = useState("");
 
   const dbRef = firebase.firestore().collection("Posts");
 
@@ -49,15 +52,58 @@ const MainPostSreen = () => {
       .delete()
       .then(() => {
         setPosts((prev) => prev.filter((element) => element.id !== post.id));
+        toast.success("ลบข่าวประชาสัมพันธ์เรียบร้อย", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       })
       .catch((err) => {
         console.error(err);
       });
   }
 
+  const returnTableData = () => {
+    if (posts.length == 0)
+      return (
+        <p
+          style={{
+            fontSize: "22px",
+            color: "gray",
+            fontWeight: "400",
+            opacity: "0.9",
+          }}
+        >
+          ไม่มีข่าวประชาสัมพันธ์
+        </p>
+      );
+    else {
+      return posts.map((post) => {
+        return (
+          <BoxPostShow>
+            <BoxTextPost>
+              <PostHeader>เรื่อง : {post.nameStd}</PostHeader>
+              <PostTitle>เนื้อหาข่าวประชาสัมพันธ์ : {post.post}</PostTitle>
+              <PostTitle>ประชาสัมพันธ์เมื่อ : {post.date}</PostTitle>
+            </BoxTextPost>
+            <BoxDelete>
+              <ButtonDelete onClick={() => deletePost(post)}>ลบ</ButtonDelete>
+            </BoxDelete>
+            <ToastContainer />
+          </BoxPostShow>
+        );
+      });
+    }
+  };
+
   if (!currentUser) {
     return <Redirect to="/login" />;
   }
+  console.log(posts);
   return (
     <>
       <ContainerDiv id="mainSreen">
@@ -81,23 +127,8 @@ const MainPostSreen = () => {
             </HeaderMessage>
             <BoxMessageShow>
               {loading ? <p>Loading...</p> : null}
-              {posts.map((post) => (
-                <BoxPostShow>
-                  <BoxTextPost>
-                    <PostHeader>เรื่อง : {post.nameStd}</PostHeader>
-                    <PostTitle>
-                      เนื้อหาข่าวประชาสัมพันธ์ : {post.post}
-                    </PostTitle>
-                    <PostTitle>ประชาสัมพันธ์เมื่อ : {post.date}</PostTitle>
-                  </BoxTextPost>
-
-                  <BoxDelete>
-                    <ButtonDelete onClick={() => deletePost(post)}>
-                      ลบ
-                    </ButtonDelete>
-                  </BoxDelete>
-                </BoxPostShow>
-              ))}
+              {/* {console.log(posts.length)} */}
+              {returnTableData()}
             </BoxMessageShow>
           </MainMessage>
           <BoxbtnPost>

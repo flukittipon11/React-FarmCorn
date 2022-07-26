@@ -13,11 +13,13 @@ import {
   LogOutButton,
   ImageLogOut,
   logoutText,
+  IconDropdown,
 } from "./NavbarElements";
 import { AuthContext } from "../Auth";
 import logoApp from "../../image/logoApp.png";
 import logout from "../../image/logout.png";
 import firebase from "../../config";
+import Dropdown from "./Dropdown";
 
 const options = ["Mangoes", "Apples", "Oranges"];
 
@@ -26,6 +28,7 @@ export default function Navbar({ toggle }) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
   const toggling = () => setIsOpen(!isOpen);
+  const [dropdown, setDropdown] = useState(false);
 
   const onOptionClicked = (value) => () => {
     setSelectedOption(value);
@@ -33,6 +36,21 @@ export default function Navbar({ toggle }) {
     console.log(selectedOption);
   };
 
+  const onMouseEnter = () => {
+    if (window.innerWidth < 960) {
+      setDropdown(false);
+    } else {
+      setDropdown(true);
+    }
+  };
+
+  const onMouseLeave = () => {
+    if (window.innerWidth < 960) {
+      setDropdown(false);
+    } else {
+      setDropdown(false);
+    }
+  };
   return (
     <>
       <Nav>
@@ -59,6 +77,7 @@ export default function Navbar({ toggle }) {
             duration={500}
             delay={100}
             activeStyle
+            
           >
             หน้าหลัก
           </NavLink>
@@ -86,18 +105,27 @@ export default function Navbar({ toggle }) {
           >
             พยากรณ์อากาศ
           </NavLink>
-          <NavLink
-            to="/showScreen"
-            spy={true}
-            smooth={true}
-            hashSpy={true}
-            offset={-100}
-            duration={500}
-            delay={100}
-            activeStyle
+          <li
+            style={{ display: "flex", alignItems: "center", height: "80px" }}
+            onMouseEnter={onMouseEnter}
+            onMouseLeave={onMouseLeave}
           >
-            แสดงข้อมูล
-          </NavLink>
+            <NavLink
+              to="/showScreen"
+              spy={true}
+              smooth={true}
+              hashSpy={true}
+              offset={-100}
+              duration={500}
+              delay={100}
+              activeStyle
+            >
+              แสดงข้อมูล
+              <IconDropdown />
+            </NavLink>
+            {dropdown && <Dropdown />}
+          </li>
+
           <LogOutButton
             onClick={() =>
               firebase
